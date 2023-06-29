@@ -44,7 +44,7 @@ const UserDetails = () => {
             fullName: RTRformData.first_name,
             admin_comments: "",
             approval_status: RTRformData.approval_status,
-            total_levy_payable: RTRformData.total_levy_payable
+            total_levy_payable: RTRformData.total_levy_payable.toFixed(2)
         }
     })
 
@@ -191,7 +191,7 @@ const UserDetails = () => {
                                             <TextField type="number" value={RTRformData.pmp_rate} disabled inputProps={disabledTextFieldStyling} />
                                         </TableCell>
                                         <TableCell>
-                                            <TextField type="number" value={RTRformData.pmp_levy} disabled inputProps={disabledTextFieldStyling} />
+                                            <TextField type="number" value={RTRformData.pmp_levy.toFixed(2)} disabled inputProps={disabledTextFieldStyling} />
                                         </TableCell>
                                         <TableCell>
                                             <TextField type="number" value={RTRformData.pmp_closing_stock} disabled inputProps={disabledTextFieldStyling} />
@@ -213,7 +213,7 @@ const UserDetails = () => {
                                             <TextField type="number" value={RTRformData.mmp_rate} disabled inputProps={disabledTextFieldStyling} />
                                         </TableCell>
                                         <TableCell>
-                                            <TextField type="number" value={RTRformData.mmp_levy} disabled inputProps={disabledTextFieldStyling} />
+                                            <TextField type="number" value={RTRformData.mmp_levy.toFixed(2)} disabled inputProps={disabledTextFieldStyling} />
                                         </TableCell>
                                         <TableCell>
                                             <TextField type="number" value={RTRformData.mmp_closing_stock} disabled inputProps={disabledTextFieldStyling} />
@@ -236,7 +236,7 @@ const UserDetails = () => {
                                             } disabled inputProps={disabledTextFieldStyling} />
                                         </TableCell>
                                         <TableCell>
-                                            <TextField type="number" value={RTRformData.refuse_bags_levy} disabled inputProps={disabledTextFieldStyling} />
+                                            <TextField type="number" value={RTRformData.refuse_bags_levy.toFixed(2)} disabled inputProps={disabledTextFieldStyling} />
                                         </TableCell>
                                         <TableCell>
                                             <TextField type="number" value={RTRformData.refuse_bags_closing_stock

@@ -83,7 +83,7 @@ const FilledRTRDetails = () => {
                                         <TableCell>{item.first_name}</TableCell>
                                         <TableCell>{item.designation}</TableCell>
                                         <TableCell>{item.email_id}</TableCell>
-                                        <TableCell>{item.total_levy_payable}</TableCell>
+                                        <TableCell>{item.total_levy_payable.toFixed(2)}</TableCell>
                                         <TableCell> {item.approval_status === 1
                                             ? "Pending"
                                             : item.approval_status === 2
