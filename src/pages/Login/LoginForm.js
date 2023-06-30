@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { updateLoginState } from "@/features/formSlice"
 import CustomButton from "@/components/Button"
 import CustomTextField from '@/components/CustomTextField'
-import { Box, Typography } from '@mui/material'
+import { Box, Divider, Stack, Typography } from '@mui/material'
 import Head from 'next/head'
 import bgImg from "../../../public/assets/background3.jpg"
 import Navbar from '@/components/Navbar'
@@ -88,7 +88,7 @@ const LoginForm = ({ session, status }) => {
         borderRadius: '20px',
         position: 'relative',
         top: {xs:'30px',md:'50',lg:'100px',xl:'120px'},
-        minHeight: 'calc(100vh - 95px)'
+        // minHeight: 'calc(100vh - 95px)'
     }
     return (
         <>
@@ -139,8 +139,7 @@ const LoginForm = ({ session, status }) => {
 
                 </Box>
             </Box>
-            <Footer/>
-        </>
+            </>
     )
 }
 

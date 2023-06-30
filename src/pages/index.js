@@ -3,6 +3,7 @@ import { useSession, getSession } from 'next-auth/react'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
+import Footer from '@/components/Footer'
 
 export default function Home() {
   const router = useRouter();
@@ -24,6 +25,7 @@ export default function Home() {
     <>
       {/* {session ? <ShopList /> : <LoginForm session={session} status={status} />} */}
       <LoginForm />
+     
     </>
   ) 
 }

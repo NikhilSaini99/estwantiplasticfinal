@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Button, Stack, Typography, Box } from '@mui/material';
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Button, Stack, Typography, Box, Divider } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { useMediaQuery } from '@mui/material';
 import { useFetch } from '@/constants/useFetch';
@@ -102,6 +102,7 @@ const Approveduserlist = () => {
                     </TableContainer>
                 </Stack>
             </Paper>
+          
             <Footer/>
         </>
     )

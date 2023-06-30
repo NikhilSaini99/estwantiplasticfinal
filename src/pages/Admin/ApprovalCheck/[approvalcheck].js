@@ -265,7 +265,7 @@ const Approvalcheck = () => {
 
                 </Box>
             </Box>
-            <Footer />
+            {/* <Footer /> */}
         </>
 
     )

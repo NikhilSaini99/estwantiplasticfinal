@@ -107,7 +107,7 @@ const FilledRTRDetails = () => {
                     </TableContainer>
                 </Stack>
             </Paper>
-            <Footer/>
+            {/* <Footer/> */}
         </>
     )
 }

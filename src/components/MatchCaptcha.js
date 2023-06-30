@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import CustomButton from "./Button";
-import { Box, Stack, TextField } from "@mui/material";
+import { Box, Stack, TextField, Typography } from "@mui/material";
 
 const MathCaptcha = ({ onSubmit }) => {
   const [num1, setNum1] = useState(0);
   const [num2, setNum2] = useState(0);
   const [answer, setAnswer] = useState("");
   const [isCorrect, setIsCorrect] = useState(false);
-  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+ 
 
   const generateRandomNumbers = () => {
     const num1 = Math.floor(Math.random() * 10) + 1;
@@ -23,11 +23,13 @@ const MathCaptcha = ({ onSubmit }) => {
     const userAnswer = parseInt(answer, 10);
     if (userAnswer === expectedAnswer) {
       setIsCorrect(true);
-      onSubmit(); // Call the onSubmit function provided by the parent component
+      onSubmit();
+
     } else {
       setIsCorrect(false);
+      alert('Wrong Captcha Please re-try again')
     }
-    setIsFormSubmitted(true);
+  
   };
 
   useEffect(() => {
@@ -36,22 +38,23 @@ const MathCaptcha = ({ onSubmit }) => {
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-      <p>
-        Solve the following math question:<br /></p>
-      <Stack sx={{ display: 'flex', flexDirection: 'row', alignItems:'center',gap:'1rem' }}>
-        {num1} + {num2}=
+      <Typography variant="body1" textAlign='center'>
+        Solve Captcha<br /></Typography>
+      <Stack sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '1rem' }}>
+        {num1} + {num2} =
         <TextField
           type="number"
           value={answer}
           onChange={(e) => setAnswer(e.target.value)}
+          disabled={isCorrect}
         />
+        <Box sx={{ alignSelf: "center" }}>
+          <CustomButton text='CheckAnswer' bgColor='#2C306F' handleClick={checkAnswer} />
+          {isCorrect && <p>Correct answer!</p>}
+          {/* {!isCorrect && answer !== "" && <p>Incorrect answer. Try again.</p>} */}
+        </Box>
       </Stack>
-      <Box sx={{alignSelf:"center"}}>
-      <CustomButton text='Submit' bgColor='#2C306F' handleClick={checkAnswer}/>
-      {/* <button onClick={checkAnswer}>Submit</button> */}
-      {isCorrect && <p>Correct answer!</p>}
-      {!isCorrect && answer !== "" && <p>Incorrect answer. Try again.</p>}
-      </Box>
+
     </Box>
   );
 };

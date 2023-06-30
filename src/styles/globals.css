@@ -29,7 +29,7 @@ main{
 } */
 
 #__next{
-  min-height: calc(100vh- 120px) !important;
+/* height: 100vh !important; */
 }
 body {
    color: rgb(var(--foreground-rgb));

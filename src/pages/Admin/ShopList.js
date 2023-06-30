@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Button, Stack, Typography, Box, CircularProgress } from '@mui/material';
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Button, Stack, Typography, Box, CircularProgress, Divider } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { useMediaQuery } from '@mui/material';
 import { useFetch } from '@/constants/useFetch';
@@ -93,7 +93,7 @@ const ShopList = ({ checkss }) => {
                                             {/* <Button variant='contained' sx={{ background: "#2e7d32 !important" }} component='a' onClick={()=>sendProps(item)}>Details</Button> */}
                                             {/* <Button variant='contained' sx={{ background: "#2e7d32 !important" }} component='a' onClick={()=>router.push('/Admin/RTRDetails/Rtr')}>Details</Button> */}
                                             <Button variant='contained' sx={{ background: "#2e7d32 !important" }}
-                                                onClick={() => { router.push({pathname:`/Admin/ApprovalCheck/${item.user_id}`,query:{check:item.approval_status}}) }}>Details</Button>
+                                                onClick={() => { router.push({ pathname: `/Admin/ApprovalCheck/${item.user_id}`, query: { check: item.approval_status } }) }}>Details</Button>
 
                                         </TableCell>
                                     </TableRow>
@@ -103,6 +103,7 @@ const ShopList = ({ checkss }) => {
                     </TableContainer>
                 </Stack>
             </Paper>
+           
             <Footer />
         </>
     )

@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { useForm, Controller, useWatch } from 'react-hook-form'
 import { useRouter } from 'next/router'
-import { Box, Table, TableBody, Dialog, TableCell, TableContainer, TableHead, TableRow, TextField, Typography, Slide, Button, Stack, InputLabel } from '@mui/material';
+import { Box, Table, TableBody, Dialog, TableCell, TableContainer, TableHead, TableRow, TextField, Typography, Slide, Button, Stack, InputLabel, Divider } from '@mui/material';
 import Navbar from '@/components/Navbar';
 import CustomTextField from '@/components/CustomTextField';
 import CustomButton from '@/components/Button';
@@ -338,8 +338,7 @@ const UserDetails = () => {
                     </Dialog>
                 </Box>
             </Box>
-
-            <Footer />
+          <Footer />
 
         </>
     )

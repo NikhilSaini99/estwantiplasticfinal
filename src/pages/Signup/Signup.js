@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useForm, Controller } from 'react-hook-form'
 import { signupData } from '@/features/SignupSlice'
-import { Box, Typography } from '@mui/material'
+import { Box, Divider, Stack, Typography } from '@mui/material'
 import Head from 'next/head'
 import CustomTextField from '@/components/CustomTextField'
 import { bgImgStyling } from '../Login/LoginForm'
@@ -20,7 +20,7 @@ import MathCaptcha from '@/components/MatchCaptcha'
 
 const Signup = () => {
     const router = useRouter()
-   
+    const [isFormSubmitted, setIsFormSubmitted] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
     const { data: registerData, error, errorMessage, fetchAPI } = useFetch('post', '/user/ragister')
 
@@ -48,7 +48,12 @@ const Signup = () => {
     const password = watch('password');
     const rePassword = watch('rePassword');
 
+
+    function enableSubmitaftercaptcha(){
+        setIsFormSubmitted(true);
+    }
     const onsubmit = async (data) => {
+        
         try {
             if (password !== rePassword) {
                 setPasswordError(true);
@@ -58,6 +63,7 @@ const Signup = () => {
 
             //removing repassword field in my obj while sending data to redux state and making a new copy without it usingLodash lib
             const newData = omit(data, 'rePassword');
+          
             dispatch(signupData({ ...newData, approval_status: 1 })); //Dispatching data to store 
 
             fetchAPI({ ...newData, approval_status: 1 })
@@ -85,9 +91,9 @@ const Signup = () => {
         p: { xs: '0.5rem', lg: '2rem' },
         borderRadius: '20px',
         position: 'relative',
-        top: '100px',
-        minHeight: 'calc(95vh - 95px)',
-        marginBottom:'10rem'
+        top: '10px',
+        // minHeight: 'calc(95vh - 95px)',
+        // marginBottom:'10rem'
         // minHeight: { xs: '100vh', md:'800px', lg: '800px'  }
     }
     return (
@@ -101,7 +107,7 @@ const Signup = () => {
             <Navbar />
             
             <Box sx={formParentStyling}>
-                <Box className='grid grid-cols-2 gap-4 bg-white shadow-2xl p-4 rounded-xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full sm:w-3/4 lg:w-full md:p-32 lg:p-24'
+                <Box className='grid grid-cols-2 gap-4 bg-white shadow-2xl p-4 rounded-xl absolute  w-full sm:w-3/4 lg:w-full md:p-32 lg:p-12'
                     component='form' onSubmit={handleSubmit(onsubmit)}>
                     <Typography className='col-span-full' variant='h1' sx={{ marginBottom: "2rem", fontSize: { xs: '1.5rem', md: '2rem', lg: '3rem' }, color: '#2C306F' }}>
                         Sign Up Now!!
@@ -133,12 +139,12 @@ const Signup = () => {
                         name='tin'
                         rules={{
                             required: 'TIN is required',
-                            minLength: { value: 9, message: 'TIN must be at least 9 digits long' },
-                            maxLength: { value: 9, message: 'TIN must be at most 9 digits long' }
+                            minLength: { value: 9, message: 'TIN must be at least 9 digits/characters long' },
+                            maxLength: { value: 9, message: 'TIN must be at most 9 digits/characters long' }
                         }}
                         render={({ field }) =>
                             <CustomTextField
-                                inputType='number' fieldLabel='Enter TIN' field={field} errorDetail='tin'
+                                inputType='text' fieldLabel='Enter TIN' field={field} errorDetail='tin'
                                 errors={errors}
                             />}
                     >
@@ -229,16 +235,14 @@ const Signup = () => {
                     >
                     </Controller>
                     <Box className="col-span-full flex justify-center mt-6">
-                    <MathCaptcha onSubmit={handleSubmit(onsubmit)} />
+                    <MathCaptcha onSubmit={enableSubmitaftercaptcha} />
                     </Box>
-                    {/* <Box className="col-span-full flex justify-center mt-6">
+                    <Box className="col-span-full flex justify-center mt-6">
                         <CustomButton type='submit' text='Submit' bgColor='#2C306F' btnDisable={!isFormSubmitted}/>
-                    </Box> */}
+                    </Box>
                 </Box>
             </Box>
-          
-           
-            <Footer />
+            {/* <Footer /> */}
         </>
 
     )
