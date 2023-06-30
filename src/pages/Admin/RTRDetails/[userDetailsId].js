@@ -112,7 +112,7 @@ const UserDetails = () => {
         <>
             <Navbar />
             <Box sx={{ ...formParentStyling }}>
-                <Box component='form' className='grid grid-cols-2 gap-4 bg-white shadow-2xl p-4 rounded-xl mt-24'
+                <Box component='form' className='grid grid-cols-2 gap-4 bg-white shadow-2xl p-4 rounded-xl '
                 // onSubmit={handleSubmit(onsubmit)}
                 >
                     <Typography className='col-span-full' variant='h1' sx={{ marginBottom: "2rem", fontSize: { xs: '1.5rem', md: '2rem', lg: '3rem' }, color: '#2C306F' }}>

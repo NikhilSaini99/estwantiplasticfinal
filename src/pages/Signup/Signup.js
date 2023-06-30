@@ -2,17 +2,16 @@ import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useForm, Controller } from 'react-hook-form'
 import { signupData } from '@/features/SignupSlice'
-import { Box, Divider, Stack, Typography } from '@mui/material'
+import { Alert, Box,IconButton, Snackbar, Stack, Typography } from '@mui/material'
 import Head from 'next/head'
 import CustomTextField from '@/components/CustomTextField'
-import { bgImgStyling } from '../Login/LoginForm'
 import CustomButton from '@/components/Button'
 import Navbar from '@/components/Navbar'
 import { useFetch } from '@/constants/useFetch'
 import omit from 'lodash/omit';
 import { useRouter } from 'next/router'
-import Footer from '@/components/Footer'
 import MathCaptcha from '@/components/MatchCaptcha'
+import CloseIcon from "@mui/icons-material/Close";
 
 
 
@@ -20,6 +19,7 @@ import MathCaptcha from '@/components/MatchCaptcha'
 
 const Signup = () => {
     const router = useRouter()
+    const [openAlert, setOpenAlert] = useState(false);
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
     const { data: registerData, error, errorMessage, fetchAPI } = useFetch('post', '/user/ragister')
@@ -44,6 +44,14 @@ const Signup = () => {
             user_type: 2,
         }
     })
+
+    function handleAlertClose(e, reason) {
+        if (reason === "clickaway") {
+          return;
+        }
+        setOpen(false);
+      }
+
 
     const password = watch('password');
     const rePassword = watch('rePassword');
@@ -73,7 +81,8 @@ const Signup = () => {
             const err = new Error("User e-mail already Exist")
             alert(err)
         }
-        alert("Your Registration request has been submitted. You will receive an email notification once your request is approved by system admin")
+         alert("Your Registration request has been submitted. You will receive an email notification once your request is approved by system admin")
+        //  setOpenAlert(true)
         router.push('/Login/LoginForm')
         reset()
     }
@@ -92,9 +101,6 @@ const Signup = () => {
         borderRadius: '20px',
         position: 'relative',
         top: '10px',
-        // minHeight: 'calc(95vh - 95px)',
-        // marginBottom:'10rem'
-        // minHeight: { xs: '100vh', md:'800px', lg: '800px'  }
     }
     return (
         <>
@@ -242,7 +248,23 @@ const Signup = () => {
                     </Box>
                 </Box>
             </Box>
-            {/* <Footer /> */}
+            {/* <Snackbar
+                        
+                            open={openAlert}
+                            autoHideDuration={2000}
+                            onClose={handleAlertClose}
+                            action={
+                                <IconButton onClick={handleAlertClose}>
+                                    <CloseIcon />
+                                </IconButton>
+                            }
+                            anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+                        >
+                            <Alert variant="filled" severity="success" onClose={handleAlertClose}>
+                            Your Registration request has been submitted. You will receive an email notification once your request is approved by system admin
+                            </Alert>
+                        </Snackbar>
+           */}
         </>
 
     )

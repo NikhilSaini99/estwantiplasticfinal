@@ -27,7 +27,7 @@ const Approvalcheck = () => {
     const { data: registerData, error, errorMessage, fetchAPI } = useFetch('get', `/user/single_user_details/${userId}`)
     const dispatch = useDispatch()
     const { loginCheck } = useLoginCheck()
-    
+
 
     const { control, handleSubmit, watch, reset, formState: { errors } } = useForm({
         defaultValues: useFormData || {
@@ -102,7 +102,7 @@ const Approvalcheck = () => {
         borderRadius: '20px',
         position: 'relative',
         top: '0',
-        minHeight: { xs: '100vh', lg: '800px' }
+        minHeight: { xs: '100vh', md: '700px', lg: '800px' }
     }
 
     if (!registerData) {
@@ -265,7 +265,7 @@ const Approvalcheck = () => {
 
                 </Box>
             </Box>
-            {/* <Footer /> */}
+            <Footer />
         </>
 
     )

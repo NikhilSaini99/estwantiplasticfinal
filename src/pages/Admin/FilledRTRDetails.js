@@ -1,6 +1,3 @@
-
-
-
 import React, { useEffect, useState } from 'react'
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Button, Stack, Typography, Box } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
@@ -13,8 +10,6 @@ import { existingData } from '@/features/RTRformslice';
 import { useSession} from 'next-auth/react';
 import Footer from '@/components/Footer';
 import useLoginCheck from '@/hooks/useLoginCheck';
-
-
 
 
 const FilledRTRDetails = () => {
@@ -56,7 +51,7 @@ const FilledRTRDetails = () => {
             <Paper elevation={20} sx={{ width: '98%', mx:'auto', my:'5rem', overflowX: 'auto' }}>
                 <Stack spacing={4} direction='column'>
                 <Box sx={{ display: 'flex', alignItems:'center'}} >
-                        <Typography variant='h1' sx={{ margin: '2.55rem auto', fontSize: '3rem', color: '#2C306F', }}>All User RTR List</Typography>
+                        <Typography variant='h1' sx={{ margin: '2.55rem auto', fontSize: '3rem', color: '#2C306F', }}>All User Plastic Levy Return List</Typography>
                     </Box>
                     <TableContainer>
                         <Table sx={{ width: '95%', margin: '0 auto' }}>

@@ -1,28 +1,28 @@
-import React, { useEffect } from 'react'
+import React, { useEffect,useState } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { updateLoginState } from "@/features/formSlice"
 import CustomButton from "@/components/Button"
 import CustomTextField from '@/components/CustomTextField'
-import { Box, Divider, Stack, Typography } from '@mui/material'
+import { Alert, Box, Divider, IconButton, Snackbar, Stack, Typography } from '@mui/material'
 import Head from 'next/head'
 import bgImg from "../../../public/assets/background3.jpg"
 import Navbar from '@/components/Navbar'
 import { useRouter } from 'next/router'
-import { loginState } from '@/features/authSlice'
- import Footer from '@/components/Footer'
+import CloseIcon from "@mui/icons-material/Close";
 
 
 
 export const bgImgStyling = {
     background: `url(${bgImg.src})`,
     zIndex: '-1',
-    backgroundSize: 'cover', position: 'absolute', width: '100%', 
+    backgroundSize: 'cover', position: 'absolute', width: '100%',
 }
 
 const baseURl = process.env.NEXT_PUBLIC_API_URL
 
 const LoginForm = ({ session, status }) => {
+    const [openAlert, setOpenAlert] = useState(false);
     const router = useRouter()
     const dispatch = useDispatch()
     const { control,
@@ -39,7 +39,16 @@ const LoginForm = ({ session, status }) => {
         dispatch(updateLoginState({ adminLogin: false, userLogin: false, loginuserData: null }))
     }, [])
 
+    function handleAlertClose(e, reason) {
+        if (reason === "clickaway") {
+          return;
+        }
+        setOpen(false);
+      }
+
+
     async function onSubmit(data) {
+        setOpenAlert(true)
         try {
             const res = await fetch(`${baseURl}/user/login`, {
                 method: 'POST',
@@ -79,7 +88,7 @@ const LoginForm = ({ session, status }) => {
             alert(error)
             reset()
         }
-
+            
     }
     const formParentStyling = {
         width: { xs: '98%', lg: '40%' },
@@ -87,7 +96,7 @@ const LoginForm = ({ session, status }) => {
         p: { xs: '0.5rem', lg: '2rem' },
         borderRadius: '20px',
         position: 'relative',
-        top: {xs:'30px',md:'50',lg:'100px',xl:'120px'},
+        top: { xs: '30px', md: '50', lg: '100px', xl: '120px' },
         // minHeight: 'calc(100vh - 95px)'
     }
     return (
@@ -126,20 +135,35 @@ const LoginForm = ({ session, status }) => {
                     </Controller>
                     <Box className="flex justify-center gap-8 ">
                         <CustomButton type='submit' text='Login' bgColor='#1f892a' />
-
+                      
                         <Box className="flex justify-center gap-8 ">
-                        
 
-                        <CustomButton text='Register' bgColor='#1f892a' handleClick={() => router.push('/Signup/Signup')} />
+
+                            <CustomButton text='Register' bgColor='#1f892a' handleClick={() => router.push('/Signup/Signup')} />
+
+                        </Box>
 
                     </Box>
 
-                    </Box>
-                 
 
                 </Box>
             </Box>
-            </>
+            <Snackbar
+                            open={openAlert}
+                            autoHideDuration={2000}
+                            onClose={handleAlertClose}
+                            action={
+                                <IconButton onClick={handleAlertClose}>
+                                    <CloseIcon />
+                                </IconButton>
+                            }
+                            anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+                        >
+                            <Alert variant="filled" severity="success" onClose={handleAlertClose}>
+                                LoggedIn successfully
+                            </Alert>
+                        </Snackbar>
+        </>
     )
 }
 
