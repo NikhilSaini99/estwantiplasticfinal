@@ -49,7 +49,7 @@ const Signup = () => {
         if (reason === "clickaway") {
           return;
         }
-        setOpen(false);
+        setOpenAlert(false);
       }
 
 
