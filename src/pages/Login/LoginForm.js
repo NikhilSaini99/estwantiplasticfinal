@@ -1,10 +1,10 @@
-import React, { useEffect,useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { updateLoginState } from "@/features/formSlice"
 import CustomButton from "@/components/Button"
 import CustomTextField from '@/components/CustomTextField'
-import { Alert, Box, Divider, IconButton, Snackbar,  Typography } from '@mui/material'
+import { Alert, Box, Divider, IconButton, Snackbar, Typography } from '@mui/material'
 import Head from 'next/head'
 import bgImg from "../../../public/assets/background3.jpg"
 import Navbar from '@/components/Navbar'
@@ -22,7 +22,7 @@ export const bgImgStyling = {
 const baseURl = process.env.NEXT_PUBLIC_API_URL
 
 const LoginForm = ({ session, status }) => {
-    // console.log("hello")
+    console.log("hello")
     const [openAlert, setOpenAlert] = useState(false);
     const router = useRouter()
     const dispatch = useDispatch()
@@ -41,11 +41,8 @@ const LoginForm = ({ session, status }) => {
     }, [])
 
     function handleAlertClose(e, reason) {
-        if (reason === "clickaway") {
-          return;
-        }
-        setOpen(false);
-      }
+        setOpenAlert(false);
+    }
 
 
     async function onSubmit(data) {
@@ -75,7 +72,6 @@ const LoginForm = ({ session, status }) => {
                 }
 
                 dispatch(updateLoginState({ adminLogin: false, userLogin: true, loginuserData: userDetailObj }))
-                // dispatch(loginState(true))
                 router.push({
                     pathname: '/RTR/UserRTRlist',
                     query: { user_id: user.result.list.user_id },
@@ -89,7 +85,7 @@ const LoginForm = ({ session, status }) => {
             alert(error)
             reset()
         }
-            
+
     }
     const formParentStyling = {
         width: { xs: '98%', lg: '40%' },
@@ -136,7 +132,7 @@ const LoginForm = ({ session, status }) => {
                     </Controller>
                     <Box className="flex justify-center gap-8 ">
                         <CustomButton type='submit' text='Login' bgColor='#1f892a' />
-                      
+
                         <Box className="flex justify-center gap-8 ">
 
 
@@ -150,20 +146,20 @@ const LoginForm = ({ session, status }) => {
                 </Box>
             </Box>
             <Snackbar
-                            open={openAlert}
-                            autoHideDuration={2000}
-                            onClose={handleAlertClose}
-                            action={
-                                <IconButton onClick={handleAlertClose}>
-                                    <CloseIcon />
-                                </IconButton>
-                            }
-                            anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-                        >
-                            <Alert variant="filled" severity="success" onClose={handleAlertClose}>
-                                LoggedIn successfully
-                            </Alert>
-                        </Snackbar>
+                open={openAlert}
+                autoHideDuration={2000}
+                onClose={handleAlertClose}
+                action={
+                    <IconButton onClick={handleAlertClose}>
+                        <CloseIcon />
+                    </IconButton>
+                }
+                anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+            >
+                <Alert variant="filled" severity="success" onClose={handleAlertClose}>
+                    LoggedIn successfully
+                </Alert>
+            </Snackbar>
         </>
     )
 }
