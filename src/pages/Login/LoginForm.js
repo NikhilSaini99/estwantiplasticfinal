@@ -22,6 +22,7 @@ export const bgImgStyling = {
 const baseURl = process.env.NEXT_PUBLIC_API_URL
 
 const LoginForm = ({ session, status }) => {
+    // console.log("hello")
     const [openAlert, setOpenAlert] = useState(false);
     const router = useRouter()
     const dispatch = useDispatch()
