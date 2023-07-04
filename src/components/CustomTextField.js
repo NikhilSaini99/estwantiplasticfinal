@@ -1,9 +1,10 @@
 import { TextField } from '@mui/material'
 import React from 'react'
 
-const CustomTextField = ({ inputType, fieldLabel, field, errorDetail, errors, disabled, inputpropStyling, variant }) => {
+const CustomTextField = ({ row , inputType, fieldLabel, field, errorDetail, errors, disabled, inputpropStyling, variant,multiline }) => {
     return (
-        <TextField fullWidth InputLabelProps={{
+        <TextField fullWidth row={row} multiline={multiline}
+           InputLabelProps={{
             style: {
                 color: '#2C306F',
             }

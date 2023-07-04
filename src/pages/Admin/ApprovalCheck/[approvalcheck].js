@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useForm, Controller } from 'react-hook-form'
-import { Box, Button, CircularProgress, Dialog, DialogActions, DialogTitle, Slide, Typography } from '@mui/material'
+import { Box, Button, CircularProgress, Dialog, DialogActions, DialogTitle, Slide, TextField, Typography } from '@mui/material'
 import Head from 'next/head'
 import CustomTextField from '@/components/CustomTextField'
 import CustomButton from '@/components/Button'
@@ -142,19 +142,6 @@ const Approvalcheck = () => {
 
                     <Controller
                         control={control}
-                        name='address'
-
-
-                        render={({ field }) =>
-                            <CustomTextField
-                                variant="standard"
-                                inputType='text' fieldLabel='Address' field={field} errorDetail='address' disabled={true}
-                                errors={errors}
-                            />}
-                    >
-                    </Controller>
-                    <Controller
-                        control={control}
                         name='tin'
 
                         render={({ field }) =>
@@ -225,6 +212,30 @@ const Approvalcheck = () => {
                             />}
                     >
                     </Controller>
+
+
+                    {/* <Controller
+                        control={control}
+                        name='address'
+
+
+                        render={({ field }) =>
+                            <CustomTextField
+                            row={2}
+                            multiline={true}
+                                variant="standard"
+                                inputType='text' fieldLabel='Address' field={field} errorDetail='address' disabled={true}
+                                errors={errors}
+                            />}
+                    > */}
+                    <Controller
+                        control={control}
+                        name='address'
+                        render={({ field }) =>
+                        <TextField multiline={true} variant="standard" rows={2}  {...field} disabled />}
+                    >
+                    </Controller>
+
                     {query.check === '1' ? <Box className="col-span-full flex justify-center mt-6 gap-4">
                         <CustomButton text='Accept' bgColor='#1F892A' handleClick={handleClickOpen} />
 
