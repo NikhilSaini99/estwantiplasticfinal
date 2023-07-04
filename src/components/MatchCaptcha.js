@@ -41,7 +41,7 @@ const MathCaptcha = ({ onSubmit }) => {
       <Typography variant="body1" textAlign='center'>
         Solve Captcha<br /></Typography>
       <Stack sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '1rem' }}>
-        {num1} + {num2} =
+        <Typography sx={{fontWeight:'bold',color:'black'}}>{num1} + {num2} =</Typography>
         <TextField
           type="number"
           value={answer}
@@ -49,8 +49,8 @@ const MathCaptcha = ({ onSubmit }) => {
           disabled={isCorrect}
         />
         <Box sx={{ alignSelf: "center" }}>
-          <CustomButton text='CheckAnswer' bgColor='#2C306F' handleClick={checkAnswer} />
-          {isCorrect && <p>Correct answer!</p>}
+          <CustomButton text='Check Answer' bgColor='#2C306F' handleClick={checkAnswer} />
+          {isCorrect && <Typography variant="body1" sx={{fontWeight:'bold',color:'black'}}>Correct answer!</Typography>}
           {/* {!isCorrect && answer !== "" && <p>Incorrect answer. Try again.</p>} */}
         </Box>
       </Stack>

@@ -150,7 +150,7 @@ const Signup = () => {
                         }}
                         render={({ field }) =>
                             <CustomTextField
-                                inputType='text' fieldLabel='Enter TIN' field={field} errorDetail='tin'
+                                inputType='number' fieldLabel='Enter TIN' field={field} errorDetail='tin'
                                 errors={errors}
                             />}
                     >
