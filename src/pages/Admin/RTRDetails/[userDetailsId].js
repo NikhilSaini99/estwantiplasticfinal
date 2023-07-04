@@ -254,7 +254,7 @@ const UserDetails = () => {
                                     control={control}
                                     name="total_levy_payable"
                                     render={({ field }) => (
-                                        <TextField type="number" {...field} variant='outlined' disabled={true} size='small' sx={{ width: '20%', textAlign: 'center' }} inputProps={{ ...disabledTextFieldStyling }} />
+                                        <TextField type="number" {...field} variant='outlined' disabled={true}  sx={{ textAlign: 'center' }} inputProps={{ ...disabledTextFieldStyling }} />
                                     )}
                                 />
                             </Box>

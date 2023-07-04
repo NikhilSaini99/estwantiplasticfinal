@@ -466,7 +466,7 @@ const RTRform = () => {
                   control={control}
                   name="total_levy_payable"
                   render={({ field }) => (
-                    <TextField type="number" {...field} variant='outlined' disabled={true} size='small' sx={{ width: '20%', textAlign: 'center' }} inputProps={{ ...disabledTextFieldStyling }} />
+                    <TextField type="number" {...field} variant='outlined' disabled={true} sx={{textAlign: 'center' }} inputProps={{ ...disabledTextFieldStyling }} />
                   )}
                 />
               </Box>
@@ -497,7 +497,11 @@ const RTRform = () => {
 
 
           <FormGroup className="col-span-full flex justify-center">
-            <FormControlLabel required control={<Checkbox
+            <FormControlLabel sx={{ "& .MuiFormControlLabel-label": {
+                color :'black !important',
+                fontWeight:'bold'
+              }}} required control={<Checkbox
+              
               checked={handleCheck}
               onChange={handleCheckChange}
             />} label="Certified to the best of my knowledge as true, correct, and complete" />

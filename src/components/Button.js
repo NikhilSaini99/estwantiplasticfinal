@@ -8,10 +8,14 @@ const CustomButton = ({ bgColor,text,type,btnDisable,handleClick, }) => {
         '&:hover': {
             backgroundColor: `${bgColor}F1 `,
         }
+        
     }
 
     return (
-        <Button  type={type} variant='contained' sx={{ ...btnStyling,color:'white' }}
+        <Button  type={type} variant='contained' sx={{ ...btnStyling,"&.Mui-disabled": {
+            background: `grey !important`,
+            color: "white"
+          } }}
         disabled={btnDisable}  onClick={handleClick} >{text}</Button>
     )
 }
