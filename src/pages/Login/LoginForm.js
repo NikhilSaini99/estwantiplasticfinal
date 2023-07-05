@@ -21,8 +21,8 @@ export const bgImgStyling = {
 
 const baseURl = process.env.NEXT_PUBLIC_API_URL
 
-const LoginForm = ({ session, status }) => {
-    console.log("hello")
+const LoginForm = () => {
+  
     const [openAlert, setOpenAlert] = useState(false);
     const router = useRouter()
     const dispatch = useDispatch()
@@ -46,7 +46,7 @@ const LoginForm = ({ session, status }) => {
 
 
     async function onSubmit(data) {
-        setOpenAlert(true)
+        
         try {
             const res = await fetch(`${baseURl}/user/login`, {
                 method: 'POST',
@@ -63,6 +63,7 @@ const LoginForm = ({ session, status }) => {
             const userDetailObj = user.result.list
             if (user.result.list.user_type === 1) {
                 dispatch(updateLoginState({ adminLogin: true, userLogin: false, loginuserData: userDetailObj }))
+                setOpenAlert(true)
                 router.push('/Admin/ShopList')
             }
             else if (user.result.list.user_type === 2) {
@@ -70,7 +71,7 @@ const LoginForm = ({ session, status }) => {
                     alert("Your Account approval is pending");
                     return;
                 }
-
+                setOpenAlert(true)
                 dispatch(updateLoginState({ adminLogin: false, userLogin: true, loginuserData: userDetailObj }))
                 router.push({
                     pathname: '/RTR/UserRTRlist',
@@ -81,7 +82,8 @@ const LoginForm = ({ session, status }) => {
                 )
             }
         } catch (e) {
-            const error = new Error("Un-AuthorizeUser or Recheck Email Id or Password")
+            const error = new Error("Unauthorize User or Recheck your Email ID and Password")
+            
             alert(error)
             reset()
         }
@@ -157,7 +159,7 @@ const LoginForm = ({ session, status }) => {
                 anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
             >
                 <Alert variant="filled" severity="success" onClose={handleAlertClose}>
-                    LoggedIn successfully
+                    Logged-in Successfully
                 </Alert>
             </Snackbar>
         </>

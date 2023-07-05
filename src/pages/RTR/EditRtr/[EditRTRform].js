@@ -112,7 +112,7 @@ const EditRTRform = () => {
       from: from,
       to: to
     });
-   
+
     dispatch(rtrData({ ...data, dateFrom: from, dateTo: to }));
     fetchAPI({ ...data, dateFrom: from, dateTo: to })
     reset();
@@ -473,7 +473,12 @@ const EditRTRform = () => {
 
 
           <FormGroup className="col-span-full flex justify-center">
-            <FormControlLabel required control={<Checkbox
+            <FormControlLabel sx={{
+              "& .MuiFormControlLabel-label": {
+                color: 'black !important',
+                fontWeight: 'bold'
+              }
+            }} required control={<Checkbox
               checked={handleCheck}
               onChange={handleCheckChange}
             />} label="Certified to the best of my knowledge as true, correct, and complete" />

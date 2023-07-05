@@ -24,13 +24,14 @@ const eligibleMonthNumber = (date.getMonth() + 1) - 1
 const currentyear = date.getFullYear()
 
 const RTRform = () => {
-  const {loginCheck} = useLoginCheck();
+  const { loginCheck } = useLoginCheck();
   const router = useRouter()
   const { data: rtrFormData, fetchAPI } = useFetch('post', '/rtr/create')
   const loggedInuserData = useSelector((state) => state.loginForm);
   const dispatch = useDispatch()
   const RTRformData = useSelector((state) => state.rtrForm);
   const [handleCheck, sethandleCheck] = useState(false)
+  const [salesLessEqual, setSalesLessEqual] = useState('')
   const [totalLevyPayable, setTotalLevyPayable] = useState(0);
   const [selectedDates, setSelectedDates] = useState({
     from: null,
@@ -87,6 +88,7 @@ const RTRform = () => {
   const data = watch();
 
   const calculateLevyAndClosingStock = () => {
+    setSalesLessEqual(false)
     // Get form data
 
     // Calculate Levy (E) and Closing Stock for each product
@@ -100,6 +102,29 @@ const RTRform = () => {
     const refuseBagsClosingStock =
       Number(+data.refuse_bags_opening_stock + +data.refuse_bags_purchases) - data.refuse_bags_sales
 
+
+
+    //checking if sum of OS+Purchases >= sales
+    const pmp_os_plus_purchases = Number(+data.pmp_opening_stock + +data.pmp_purchases);
+    const mmp_os_plus_purchases = Number(+data.mmp_opening_stock + +data.mmp_purchases);
+    const levy_os_plus_purchases = Number(+data.refuse_bags_opening_stock + +data.refuse_bags_purchases);
+    
+
+    if (pmp_os_plus_purchases >= data.pmp_sales && mmp_os_plus_purchases >= data.mmp_sales && levy_os_plus_purchases >= data.refuse_bags_sales) {
+      setSalesLessEqual(true)
+    }
+
+    else {
+      setSalesLessEqual(false)
+      if (!salesLessEqual) {
+        alert("Your sales should not be greator than your Opening Stock plus Purchases");
+        return;
+      }
+    }
+
+
+
+
     // Set the calculated values in the form
     setValue('pmp_levy', pmpLevy);
     setValue('pmp_closing_stock', pmpClosingStock);
@@ -112,13 +137,22 @@ const RTRform = () => {
     const totalLevyPayable = (+pmpLevy + +mmpLevy + +refuseBagsLevy).toFixed(2);
     setValue('total_levy_payable', totalLevyPayable)
 
+
+
   };
 
 
   const disabledTextFieldStyling = { style: { fontWeight: 'bold' } }
 
   const onsubmit = (data) => {
+  
     const watchedData = watch();
+    if (!(data.pmp_closing_stock>=0&&data.mmp_closing_stock>=0&&data.refuse_bags_closing_stock>=0)) {
+      alert("Your sales should not be greator than your Opening Stock plus Purchases");
+      reset();
+      return;
+    }
+
     // console.log('default values', data)
     const from = watchedData.from_date ? watchedData.from_date.toISOString() : null;
     const to = watchedData.to_date ? watchedData.to_date.toISOString() : null;
@@ -127,6 +161,7 @@ const RTRform = () => {
       from: from,
       to: to
     });
+
     dispatch(rtrData({
       ...data, from_date: from, to_date: to
     }));
@@ -168,14 +203,14 @@ const RTRform = () => {
     marginBottom: "2rem", fontSize: { xs: '1.5rem', md: '2rem', lg: '3rem' }, color: '#2C306F'
   }
 
-  
-    //checking if user logged in or not if not redirected to login page
-    // const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
-    // useEffect(() => {
-    //     if (!isLoggedIn) {
-    //         router.replace('/Login/LoginForm')
-    //     }
-    // }, [isLoggedIn, router])
+
+  //checking if user logged in or not if not redirected to login page
+  // const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
+  // useEffect(() => {
+  //     if (!isLoggedIn) {
+  //         router.replace('/Login/LoginForm')
+  //     }
+  // }, [isLoggedIn, router])
 
   return (
     <>
@@ -466,7 +501,7 @@ const RTRform = () => {
                   control={control}
                   name="total_levy_payable"
                   render={({ field }) => (
-                    <TextField type="number" {...field} variant='outlined' disabled={true} sx={{textAlign: 'center' }} inputProps={{ ...disabledTextFieldStyling }} />
+                    <TextField type="number" {...field} variant='outlined' disabled={true} sx={{ textAlign: 'center' }} inputProps={{ ...disabledTextFieldStyling }} />
                   )}
                 />
               </Box>
@@ -497,11 +532,13 @@ const RTRform = () => {
 
 
           <FormGroup className="col-span-full flex justify-center">
-            <FormControlLabel sx={{ "& .MuiFormControlLabel-label": {
-                color :'black !important',
-                fontWeight:'bold'
-              }}} required control={<Checkbox
-              
+            <FormControlLabel sx={{
+              "& .MuiFormControlLabel-label": {
+                color: 'black !important',
+                fontWeight: 'bold'
+              }
+            }} required control={<Checkbox
+
               checked={handleCheck}
               onChange={handleCheckChange}
             />} label="Certified to the best of my knowledge as true, correct, and complete" />
@@ -517,7 +554,7 @@ const RTRform = () => {
       </Box>
 
 
-              <Footer/>
+      <Footer />
 
     </>
   )
