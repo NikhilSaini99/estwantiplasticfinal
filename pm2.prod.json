@@ -1,0 +1,20 @@
+[
+  {
+    "name": "estwani-plastic-tax",
+    "script": "npm",
+    "args": "start",
+    "exec_mode": "cluster",
+    "instances": "max",
+    "watch": false,
+    "merge_logs": true,
+    "autorestart": true,
+    "exec_interpreter": "node",
+    "log_date_format": "DD-MMM-YY h:mm:ss A",
+    "post_update": [
+      "npm install"
+    ],
+    "env": {
+      "NODE_ENV": "development"
+    }
+  }
+]

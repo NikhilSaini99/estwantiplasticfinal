@@ -1,10 +1,11 @@
 import axios from 'axios';
 const baseURL = process.env.NEXT_PUBLIC_API_URL;
+import { API_HOST } from './server';
 
 const fetching = async (method, path, databody) => {
   const options = {
     method,
-    url: `${baseURL}${path}`,
+    url: `${API_HOST}${path}`,
     data: databody,
   };
 

@@ -10,7 +10,7 @@ import bgImg from "../../../public/assets/background3.jpg"
 import Navbar from '@/components/Navbar'
 import { useRouter } from 'next/router'
 import CloseIcon from "@mui/icons-material/Close";
-
+import { API_HOST } from '@/constants/server'
 
 
 export const bgImgStyling = {
@@ -48,7 +48,7 @@ const LoginForm = () => {
     async function onSubmit(data) {
         
         try {
-            const res = await fetch(`${baseURl}/user/login`, {
+            const res = await fetch(`${API_HOST}/user/login`, {
                 method: 'POST',
                 headers: {
                     "Content-Type": 'application/json'
