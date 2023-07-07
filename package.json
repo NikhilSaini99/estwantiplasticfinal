@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "start:prod":"next start -p 80",
+    "start:prod": "next start -p 80",
     "export": "next build && next export",
     "lint": "next lint"
   },
@@ -21,6 +21,7 @@
     "dayjs": "^1.11.8",
     "eslint": "8.43.0",
     "eslint-config-next": "13.4.7",
+    "latest-version": "^7.0.0",
     "lodash": "^4.17.21",
     "next": "13.4.7",
     "next-auth": "^4.22.1",
