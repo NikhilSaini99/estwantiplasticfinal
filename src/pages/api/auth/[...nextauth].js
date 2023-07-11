@@ -2,7 +2,7 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { useDispatch } from "react-redux";
-
+secret: process.env.NEXT_PUBLIC_SECRET
 export default NextAuth({
 
 
@@ -58,6 +58,6 @@ export default NextAuth({
         return null;
       }
     })
-  ],
+  ],secret: process.env.NEXT_PUBLIC_API_URL
 }
 )

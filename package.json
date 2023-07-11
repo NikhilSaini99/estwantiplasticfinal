@@ -6,6 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "start:prod": "pm2 start npm --name \"Next-App\" -- start",
+    "export": "next build && next export",
     "lint": "next lint"
   },
   "dependencies": {
@@ -19,6 +21,7 @@
     "dayjs": "^1.11.8",
     "eslint": "8.43.0",
     "eslint-config-next": "13.4.7",
+    "latest-version": "^7.0.0",
     "lodash": "^4.17.21",
     "next": "13.4.7",
     "next-auth": "^4.22.1",
@@ -30,6 +33,7 @@
     "react-router-dom": "^6.14.0",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.4.2",
+    "sharp": "^0.32.1",
     "tailwindcss": "3.3.2"
   }
 }

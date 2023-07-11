@@ -10,7 +10,7 @@ import bgImg from "../../../public/assets/background3.jpg"
 import Navbar from '@/components/Navbar'
 import { useRouter } from 'next/router'
 import CloseIcon from "@mui/icons-material/Close";
-
+// import { API_HOST } from '@/constants/server'
 
 
 export const bgImgStyling = {
@@ -22,7 +22,7 @@ export const bgImgStyling = {
 const baseURl = process.env.NEXT_PUBLIC_API_URL
 
 const LoginForm = () => {
-  
+
     const [openAlert, setOpenAlert] = useState(false);
     const router = useRouter()
     const dispatch = useDispatch()
@@ -46,7 +46,7 @@ const LoginForm = () => {
 
 
     async function onSubmit(data) {
-        
+
         try {
             const res = await fetch(`${baseURl}/user/login`, {
                 method: 'POST',
@@ -83,7 +83,7 @@ const LoginForm = () => {
             }
         } catch (e) {
             const error = new Error("Unauthorize User or Recheck your Email ID and Password")
-            
+
             alert(error)
             reset()
         }
