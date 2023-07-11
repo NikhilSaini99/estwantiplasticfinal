@@ -1,0 +1,46 @@
+// how to deploye NextJs application on server in production enverment. 
+
+install npm 
+install git 
+install pm2 
+
+install node modules 
+
+create build production build file 
+npm run build 
+
+to start build file run 
+npm start build
+
+run application with PM2 in development module
+pm2 start npm --name "next" -- run dev
+
+run application in production module
+npm run build
+pm2 start npm --name "next" -- start
+
+This will run application in defult port of 3000
+
+To manage port install Nginx 
+
+sudo apt-get update
+sudo apt-get install -y nginx
+sudo service nginx restart
+
+Configer Nginx server
+sudo vim /etc/nginx/conf.d/my-app.conf
+
+server {
+    listen 80;
+    server_name 3.86.93.97;    // Website IP address/EC2 IP addess
+location / {
+        proxy_pass http://127.0.0.1:3000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header XForwarded-Proto $scheme;
+    }
+}
+
+sudo service nginx restart
+Done
