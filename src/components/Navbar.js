@@ -1,5 +1,5 @@
 import React from "react";
-import AvatarImg from '../../public/assets/logo.png'
+import AvatarImg from '../../public/assets/EEA_LOGO.jpg'
 import { Stack, Box, IconButton, Drawer, Paper, Button, Typography } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
@@ -111,7 +111,7 @@ const Navbar = () => {
               style={{
                 width: "100%",
                 height: '100%',
-                maxWidth: "10rem",
+                maxWidth: "5rem",
                 borderRadius: "50%",
                 cursor: 'pointer'
               }}

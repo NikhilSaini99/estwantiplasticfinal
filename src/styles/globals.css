@@ -35,6 +35,7 @@ body {
    color: rgb(var(--foreground-rgb));
    background: url('../../public/assets/bg2.jpg');
    background-size: cover;
+   background-attachment: fixed;
    object-fit: cover;
    position: absolute;
    left:0;
