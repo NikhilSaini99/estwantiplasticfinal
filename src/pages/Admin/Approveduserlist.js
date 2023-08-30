@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Button, Stack, Typography, Box, Divider } from '@mui/material';
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Button, Stack, Typography, Box, Divider, TablePagination } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { useMediaQuery } from '@mui/material';
 import { useFetch } from '@/constants/useFetch';
@@ -39,9 +39,25 @@ const Approveduserlist = () => {
         setAdminLoginState(true)
     },[loginStatus])
     
- 
+    //pagination
+    const [page, setPage] = useState(0);
+	const [rowsPerPage, setRowsPerPage] = useState(8);
 
- 
+	const handleChangePage = (event, newPage) => {
+		setPage(newPage);
+	};
+
+	const handleChangeRowsPerPage = (event) => {
+		setRowsPerPage(parseInt(event.target.value, 10));
+		setPage(0); // Reset to the first page when changing rows per page
+	};
+
+	// Calculate the starting index and ending index for the current page
+	const startIndex = page * rowsPerPage;
+	const endIndex = startIndex + rowsPerPage;
+
+	// Get the current page's data from the 'tender' array
+	const currentPageData = userList?.slice(startIndex, endIndex) || [];
          return (
         <>
       <Head>
@@ -73,7 +89,7 @@ const Approveduserlist = () => {
                                 </TableRow>
                             </TableHead>
                             <TableBody sx={{ ' & td': { px: '5px' } }}>
-                                {userList.map((item, index) => (
+                                {currentPageData?.map((item, index) => (
                                     <TableRow key={index} sx={{ '&>*': { textAlign: 'center' } }}>
                                         <TableCell>{item.name_of_business}</TableCell>
                                         <TableCell>{item.tin}</TableCell>
@@ -99,6 +115,15 @@ const Approveduserlist = () => {
                                 ))}
                             </TableBody>
                         </Table>
+                        <TablePagination
+							rowsPerPageOptions={[5, 10, 25]}
+							component="div"
+							count={userList?.length || 0}
+							rowsPerPage={rowsPerPage}
+							page={page}
+							onPageChange={handleChangePage}
+							onRowsPerPageChange={handleChangeRowsPerPage}
+						/>
                     </TableContainer>
                 </Stack>
             </Paper>
