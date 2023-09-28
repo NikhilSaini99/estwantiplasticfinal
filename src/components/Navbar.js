@@ -32,6 +32,7 @@ const Navbar = () => {
   const rtrFromData = useSelector((state) => state.rtrForm)
   const [intialTry, setInitialtry] = useState(false)
   const validRTRstatus = useSelector((state) => state.validateRTR)
+  console.log('ss',validRTRstatus)
   useEffect(() => {
     // setAdminLoginState(true)
   }, [loginStatus])

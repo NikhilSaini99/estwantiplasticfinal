@@ -26,7 +26,6 @@ const ShopList = () => {
     const { loginCheck } = useLoginCheck();
 
     useEffect(() => {
-        // userLoginCheck()
         loginCheck()
         fetchAPI();
     }, [fetchAPI, loginStatus])
@@ -38,7 +37,7 @@ const ShopList = () => {
             setRTRFilledList(check.result.list)
             // dispatch(existingData(check.result.list))
             if (rtrFilledList.length > 0) {
-                if (rtrFilledList.find((element) => element.month_number === (currentMont - 1) && element.current_year === currentyear)) {
+                if (rtrFilledList.some((element) => element.month_number === (currentMont - 1) && element.current_year === currentyear)) {
                     dispatch(validateRTR(false))
                 }
                 else {
@@ -51,7 +50,7 @@ const ShopList = () => {
 
             
         }
-    }, [fetchAPI, check, dispatch])
+    }, [fetchAPI, check, dispatch,rtrFilledList])
 
    
 
@@ -129,24 +128,3 @@ const ShopList = () => {
 }
 
 export default ShopList
-
-
-/*   useEffect(() => {
-        async function checking() {
-            try {
-                // const response = await axios({
-                //     method: 'get',
-                //     url: `${process.env.NEXT_PUBLIC_API_URL}/rtr/list`
-                // })
-                const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/rtr/list`);
-
-                const data = await response.json();
-                setUserList(data.result.list)
-            } catch (err) {
-                console.log(err)
-            }
-        }
-        checking();
-
-    }, [])
- */

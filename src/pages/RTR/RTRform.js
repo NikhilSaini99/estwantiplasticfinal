@@ -15,6 +15,7 @@ import { useFetch } from '@/constants/useFetch';
 import { useRouter } from 'next/router';
 import Footer from '@/components/Footer';
 import useLoginCheck from '@/hooks/useLoginCheck';
+import { validateRTR } from '@/features/filledRtrCheckSlice';
 
 
 const date = new Date();
@@ -149,6 +150,7 @@ const RTRform = () => {
     const watchedData = watch();
     if (!(data.pmp_closing_stock>=0&&data.mmp_closing_stock>=0&&data.refuse_bags_closing_stock>=0)) {
       alert("Your sales should not be greator than your Opening Stock plus Purchases");
+      dispatch(validateRTR(false))
       reset();
       return;
     }
@@ -222,32 +224,6 @@ const RTRform = () => {
             Plastic Return Filing - {month[date.getMonth() - 1]}{" "}{currentyear}
           </Typography>
 
-          {/* <Typography className='col-span-full' variant='h1' sx={{ ...headingStyling, fontSize: { lg: '2rem' }, fontWeight: 'inherit' }}>
-            You are eligible to fill plastic return filing for the month of <Typography variant='body1' sx={{ ...headingStyling, display: 'inline', color: '#268121', fontWeight: '600' }}></Typography>
-          </Typography> */}
-
-          {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <Controller
-              control={control}
-              name="from_date"
-              rules={{ required: 'Date is required' }}
-              render={({ field }) => <DatePicker label="From" slotProps={{ textField: { variant: 'outlined'} }}
-                // onChange={(date) => setfromDate(date.toISOString())}
-                {...field} />}
-            >
-            </Controller>
-
-            <Controller
-              control={control}
-              name="to_date"
-              rules={{ required: 'Date is required' }}
-              render={({ field }) => <DatePicker label="To" slotProps={{ textField: { variant: 'outlined', } }}
-                // onChange={(date) => settoDate(date.toISOString())}
-                {...field} />}
-            >
-            </Controller>
-          </LocalizationProvider> */}
-
           <Controller
             control={control}
             name="company_name"
@@ -258,8 +234,6 @@ const RTRform = () => {
             />}
           />
 
-
-
           <Controller
             control={control}
             name="tin"
@@ -269,8 +243,6 @@ const RTRform = () => {
             />}
           />
 
-
-
           <Controller
             control={control}
             name="email_id"
@@ -279,8 +251,6 @@ const RTRform = () => {
               fieldLabel='Email ID' errorDetail='email' errors={errors}
             />}
           />
-
-
 
           <Controller
             control={control}
