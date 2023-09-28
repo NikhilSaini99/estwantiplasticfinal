@@ -110,25 +110,3 @@ const Approveduserlist = () => {
 
 export default Approveduserlist
 
-
-/*   useEffect(() => {
-        async function checking() {
-            try {
-                // const response = await axios({
-                //     method: 'get',
-                //     url: `${process.env.NEXT_PUBLIC_API_URL}/rtr/list`
-                // })
-                const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/rtr/list`);
-
-                const data = await response.json();
-                setUserList(data.result.list)
-            } catch (err) {
-                console.log(err)
-            }
-        }
-        checking();
-
-    }, [])
- */
-
-
