@@ -56,7 +56,7 @@ const EditRTRform = () => {
       mmp_opening_stock: RTRformData.mmp_opening_stock,
       mmp_purchases: RTRformData.mmp_purchases,
       mmp_sales: RTRformData.mmp_sales,
-      mmp_rate: 0.30,
+      mmp_rate: 0.20,
       mmp_levy: RTRformData.mmp_levy,
       mmp_closing_stock: RTRformData.mmp_closing_stock,
       refuse_bags_opening_stock: RTRformData.refuse_bags_opening_stock,
