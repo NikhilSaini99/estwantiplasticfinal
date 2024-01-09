@@ -76,9 +76,9 @@ const EditRTRform = () => {
     // Get form data
 
     // Calculate Levy (E) and Closing Stock for each product
-    const pmpLevy = +data.pmp_sales * +data.pmp_rate;
-    const mmpLevy = +data.mmp_sales * +data.mmp_rate;
-    const refuseBagsLevy = +data.refuse_bags_sales * +data.refuse_bags_rate;
+    const pmpLevy = (+data.pmp_sales * +data.pmp_rate).toFixed(2);
+    const mmpLevy = (+data.mmp_sales * +data.mmp_rate).toFixed(2);
+    const refuseBagsLevy = (+data.refuse_bags_sales * +data.refuse_bags_rate).toFixed(2);
 
     const pmpClosingStock = Number(+data.pmp_opening_stock + +data.pmp_purchases) - data.pmp_sales
 
@@ -95,7 +95,7 @@ const EditRTRform = () => {
     setValue('refuse_bags_closing_stock', refuseBagsClosingStock);
 
     // Calculate and set the Total Levy Payable
-    const totalLevyPayable = pmpLevy + mmpLevy + refuseBagsLevy;
+    const totalLevyPayable = (+pmpLevy + +mmpLevy + +refuseBagsLevy).toFixed(2);
     setValue('total_levy_payable', totalLevyPayable)
 
   };
@@ -127,7 +127,7 @@ const EditRTRform = () => {
     //hiding query parameters from the URL using above
   }
 
-  // console.log(RTRformData)
+
   const formParentStyling = {
     width: { xs: '98%', md: '98%', lg: '98%' },
     margin: '0 auto',
@@ -149,14 +149,6 @@ const EditRTRform = () => {
 
   //checking if user logged in or not if not redirected to login page
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
-  // useEffect(()=>{
-  //   console.log(isLoggedIn)
-  // },[isLoggedIn])
-  // useEffect(() => {
-  //   if (!isLoggedIn) {
-  //     router.replace('/Login/LoginForm')
-  //   }
-  // }, [isLoggedIn, router])
 
   return (
     <>
@@ -167,27 +159,7 @@ const EditRTRform = () => {
           <Typography className='col-span-full' variant='h1' sx={{ marginBottom: "2rem", fontSize: { xs: '1.5rem', md: '2rem', lg: '3rem' }, color: '#2C306F' }}>
             Plastic Levy Return!
           </Typography>
-          {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <Controller
-              control={control}
-              name="from_date"
-              rules={{ required: 'Date is required' }}
-              render={({ field }) => <DatePicker label="From" slotProps={{ textField: { variant: 'outlined' } }}
-                // onChange={(date) => setfromDate(date.toISOString())}
-                {...field} />}
-            >
-            </Controller>
 
-            <Controller
-              control={control}
-              name="to_date"
-              rules={{ required: 'Date is required' }}
-              render={({ field }) => <DatePicker label="To" slotProps={{ textField: { variant: 'outlined', } }}
-                // onChange={(date) => settoDate(date.toISOString())}
-                {...field} />}
-            >
-            </Controller>
-          </LocalizationProvider> */}
 
           <Controller
             control={control}

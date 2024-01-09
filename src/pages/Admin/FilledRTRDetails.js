@@ -154,7 +154,11 @@ const FilledRTRDetails = () => {
                     </TableContainer>
                 </Stack>
             </Paper>
+<<<<<<< HEAD
              <Footer/>
+=======
+            <Footer/>
+>>>>>>> 691a50088549fa5643e979bfeee16a2ae07437dc
         </>
     )
 }
