@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { existingData } from '@/features/RTRformslice';
 import { useSession } from 'next-auth/react';
 import useLoginCheck from '@/hooks/useLoginCheck';
+import Footer from '@/components/Footer';
 
 
 const date = new Date();
@@ -153,7 +154,7 @@ const FilledRTRDetails = () => {
                     </TableContainer>
                 </Stack>
             </Paper>
-            {/* <Footer/> */}
+             <Footer/>
         </>
     )
 }
