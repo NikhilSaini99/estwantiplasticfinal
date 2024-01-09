@@ -151,7 +151,6 @@ const RTRform = () => {
       reset();
       return;
     }
-  }
 
     // console.log('default values', data)
     const from = watchedData.from_date ? watchedData.from_date.toISOString() : null;
@@ -526,5 +525,5 @@ const RTRform = () => {
 
     </>
   )
-
+            }
 export default RTRform
