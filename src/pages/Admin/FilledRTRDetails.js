@@ -15,8 +15,8 @@ import Footer from '@/components/Footer';
 const date = new Date();
 const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const Years = [2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030, 2031, 2032, 2033, 2034, 2035];
-const eligibleMonthText = month[date.getMonth() - 1];
-const eligibleMonthNumber = (date.getMonth() + 1) - 1
+const eligibleMonthText = month[date.getMonth()];
+const eligibleMonthNumber = (date.getMonth() + 1)
 const currentyear = date.getFullYear()
 
 const FilledRTRDetails = () => {

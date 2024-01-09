@@ -15,8 +15,8 @@ import { useRouter } from "next/router";
 
 const date = new Date();
 const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-const eligibleMonthText = month[date.getMonth() - 1];
-const eligibleMonthNumber = (date.getMonth() + 1) - 1
+const eligibleMonthText = month[date.getMonth()];
+const eligibleMonthNumber = (date.getMonth() + 1)
 const currentyear = date.getFullYear()
 
 const mydate = { month_text: eligibleMonthText, month_number: eligibleMonthNumber, current_year: currentyear }
