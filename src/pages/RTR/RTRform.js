@@ -20,8 +20,8 @@ import { validateRTR } from '@/features/filledRtrCheckSlice';
 
 const date = new Date();
 const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-const eligibleMonthText = month[date.getMonth()];
-const eligibleMonthNumber = (date.getMonth() + 1);
+const eligibleMonthText = month[date.getMonth() - 1];
+const eligibleMonthNumber = (date.getMonth() + 1) - 1
 const currentyear = date.getFullYear()
 
 const RTRform = () => {
@@ -137,9 +137,6 @@ const RTRform = () => {
     // Calculate and set the Total Levy Payable
     const totalLevyPayable = (+pmpLevy + +mmpLevy + +refuseBagsLevy).toFixed(2);
     setValue('total_levy_payable', totalLevyPayable)
-
-
-
   };
 
 
@@ -148,12 +145,13 @@ const RTRform = () => {
   const onsubmit = (data) => {
   
     const watchedData = watch();
-    if (!(data.pmp_closing_stock>=0&&data.mmp_closing_stock>=0&&data.refuse_bags_closing_stock>=0)) {
-      alert("Your sales should not be greator than your Opening Stock plus Purchases");
-      dispatch(validateRTR(false))
+    if (!(data.pmp_closing_stock >= 0 && data.mmp_closing_stock >= 0 && data.refuse_bags_closing_stock >= 0)) {
+      alert("Your sales should not be greater than your Opening Stock plus Purchases");
+      dispatch(validateRTR(false));
       reset();
       return;
     }
+  }
 
     // console.log('default values', data)
     const from = watchedData.from_date ? watchedData.from_date.toISOString() : null;
@@ -528,6 +526,5 @@ const RTRform = () => {
 
     </>
   )
-}
 
 export default RTRform
