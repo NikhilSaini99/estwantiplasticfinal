@@ -20,8 +20,8 @@ import { validateRTR } from '@/features/filledRtrCheckSlice';
 
 const date = new Date();
 const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-const eligibleMonthText = month[date.getMonth() - 1];
-const eligibleMonthNumber = (date.getMonth() + 1) - 1
+const eligibleMonthText = month[date.getMonth()];
+const eligibleMonthNumber = (date.getMonth() + 1)
 const currentyear = date.getFullYear()
 
 const RTRform = () => {
