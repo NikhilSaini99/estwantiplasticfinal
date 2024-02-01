@@ -19,6 +19,7 @@ import { validateRTR } from '@/features/filledRtrCheckSlice';
 
 
 const date = new Date();
+date.setMonth(date.getMonth() - 1);
 const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const eligibleMonthText = month[date.getMonth()];
 const eligibleMonthNumber = (date.getMonth() + 1)
@@ -79,7 +80,7 @@ const RTRform = () => {
       refuse_bags_closing_stock: 0,
       total_levy_payable: 0,
       approval_status: 1,
-      created_at: date,
+      created_at: new Date(),
       month_text: eligibleMonthText,
       month_number: eligibleMonthNumber,
       current_year: currentyear
@@ -218,7 +219,7 @@ const RTRform = () => {
         <Box component='form' className='grid grid-cols-2 gap-4 bg-white shadow-2xl p-4 rounded-xl my-12'
           onSubmit={handleSubmit(onsubmit)}>
           <Typography className='col-span-full' variant='h1' sx={{ ...headingStyling }}>
-            Plastic Return Filing - {month[date.getMonth() - 1]}{" "}{currentyear}
+            Plastic Return Filing - {eligibleMonthText}{" "}{currentyear}
           </Typography>
 
           <Controller
